@@ -1,40 +1,87 @@
+<!DOCTYPE html>
 <html>
 <head>
-<title>mikrotik hotspot > error</title>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-<meta http-equiv="pragma" content="no-cache">
-<meta http-equiv="expires" content="-1">
-<style type="text/css">
-<!--
-textarea,input,select {
-	background-color: #FDFBFB;
-	border: 1px #BBBBBB solid;
-	padding: 2px;
-	margin: 1px;
-	font-size: 14px;
-	color: #808080;
-}
+<meta charset="utf-8">
+<title>Error</title>
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="expires" content="-1" />	
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0" />
+<link rel="stylesheet" href="css/login.css" media="screen">
+ 
 
-body{ color: #737373; font-size: 12px; font-family: verdana; }
-
-a, a:link, a:visited, a:active { color: #AAAAAA; text-decoration: none; font-size: 12px; }
-a:hover { border-bottom: 1px dotted #c1c1c1; color: #AAAAAA; }
-img {border: none;}
-td { font-size: 12px; color: #7A7A7A; }
-
--->
-</style>
 </head>
-<body>
-<table width="100%" height="100%">
+<body class='login'>
+$(if chap-id)
+	<form name="sendin" action="$(link-login-only)" method="post">
+		<input type="hidden" name="username" />
+		<input type="hidden" name="password" />
+		<input type="hidden" name="dst" value="$(link-orig)" />
+		<input type="hidden" name="popup" value="true" />
+	</form>
+	
+	<script type="text/javascript" src="md5.js"></script>
+	<script type="text/javascript">
+	<!--
+	    function doLogin() {
+		document.sendin.username.value = document.login.username.value;
+		document.sendin.password.value = hexMD5('$(chap-id)' + document.login.password.value + '$(chap-challenge)');
+		document.sendin.submit();
+		return false;
+	    }
+	//-->
+	</script>
+$(endif)
+
+
+<div style="margin:0;padding:50;display:inline"></div>
+
+<center>
+  <div id="head">
+    <img id="logo" src="imagenes/desconected.png"/> </div>
+    <div align="center">
+      <h2 class="textShadowHex">
+        <legend class="parpadea text">
+       Error inesperado@
+        </legend>
+      </h2>
+    </div>
+  <div id="box">
+  <center>
+<br>
+<table class="tabula">
 
 <tr>
 <td align="center" valign="middle">
-Hotspot ERROR: $(error)<br>
+ $(error)<br>
 <br>
-Login page: <a href="$(link-login)">$(link-login)</a>
+Login page: <a href="$(link-login)"><input  id="botonfree" type="button" value="Reintentar" /></a>
 </td>
 </tr>
 </table>
+
+
+<br>
+<br/>
+
+<p>
+</p>
+</center>
+</div></div></div></div>
+
+
+<script type="text/javascript">
+<!--
+  document.login.username.focus();
+//-->
+</script>
+<script type="text/javascript">
+document.oncontextmenu = function(){return false;}
+</script>
+<script language="javascript">
+function rlogin()
+{
+document.getElementById("Nombre2").value = document.getElementById("Nombre1").value;
+}
+  </script>
 </body>
 </html>

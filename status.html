@@ -1,106 +1,110 @@
+<!DOCTYPE html>
 <html>
-<head><meta charset="windows-1252">
-<title>Estado de la conexion</title>
-$(if refresh-timeout)
-<meta http-equiv="refresh" content="$(refresh-timeout-secs)">
-$(endif)
-
-<meta http-equiv="pragma" content="no-cache">
-<meta http-equiv="expires" content="-1">
-<meta content='width=device-width' name='viewport'/>
-    <link rel="stylesheet" href="login.css" media="screen">
-<style type="text/css">
-<!--
-textarea,input,select {
-	background-color: #FDFBFB;
-	border: 1px #BBBBBB solid;
-	padding: 2px;
-	margin: 1px;
-	font-size: 14px;
-	color: #808080;
-}
-
-.tabula{
+<head>
+<meta charset="utf-8">
+<title>Logout</title>
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="expires" content="-1" />	
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0" />
+<link rel="stylesheet" href="css/login.css" media="screen">
  
-border-width: 1px; 
-border-collapse: collapse; 
-border-color: #c1c1c1; 
-background-color: transparent;
-font-family: verdana;
-font-size: 11px;
-}
 
-    
-    #head{
-        transform: scaleX(1.1);
-    }
-    *{color:#7e7e7e;}
--->
-</style>
-<script language="JavaScript">
-<!--
-$(if advert-pending == 'yes')
-    var popup = '';
-    function focusAdvert() {
-	if (window.focus) popup.focus();
-    }
-    function openAdvert() {
-	popup = open('$(link-advert)', 'hotspot_advert', '');
-	setTimeout("focusAdvert()", 1000);
-    }
-$(endif)
-    function openLogout() {
-	if (window.name != 'hotspot_status') return true;
-        open('$(link-logout)', 'hotspot_logout', 'toolbar=0,location=0,directories=0,status=0,menubars=0,resizable=1,width=280,height=250');
-	window.close();
-	return false;
-    }
-//-->
-</script>
 </head>
-<body bottommargin="0" topmargin="0" leftmargin="0" rightmargin="0"
-$(if advert-pending == 'yes')
-	onLoad="openAdvert()"
+<body class='login'>
+$(if chap-id)
+	<form name="sendin" action="$(link-login-only)" method="post">
+		<input type="hidden" name="username" />
+		<input type="hidden" name="password" />
+		<input type="hidden" name="dst" value="$(link-orig)" />
+		<input type="hidden" name="popup" value="true" />
+	</form>
+	
+	<script type="text/javascript" src="md5.js"></script>
+	<script type="text/javascript">
+	<!--
+	    function doLogin() {
+		document.sendin.username.value = document.login.username.value;
+		document.sendin.password.value = hexMD5('$(chap-id)' + document.login.password.value + '$(chap-challenge)');
+		document.sendin.submit();
+		return false;
+	    }
+	//-->
+	</script>
 $(endif)
->
-<table width="100%" height="100%">
 
-<tr>
-<td align="center" valign="middle">
-    <div id="head"></div>
-    <div id="box">
-<form action="$(link-logout)" name="logout" onSubmit="return openLogout()">
+
+<div style="margin:0;padding:50;display:inline"></div>
+
+<center>
+  <div id="head">
+    <img id="logo" src="imagenes/conected.png"/> </div>
+    <div align="center">
+      <h2 class="textShadowHex">
+        <legend class="parpadea text">
+        Conectad@
+        </legend>
+      </h2>
+    </div>
+  <div id="box">
+  <center>
+  $(if login-by == 'trial')
+	<br><div style="text-align: center;">Bienvenid@  user free!</div><br>$(endif)
 <table border="1" class="tabula">
-$(if login-by == 'trial')
-	<br><div style="text-align: center;">Hola Usuario de prueba!</div><br>
-$(elif login-by != 'mac')
-	<br><div style="text-align: center;">Hola $(username)!</div><br>
-$(endif)
-	<tr><td align="right">IP address:</td><td>$(ip)</td></tr>
-	<tr><td align="right">bytes up/down:</td><td>$(bytes-in-nice) / $(bytes-out-nice)</td></tr>
+
+	<tr>
+	  <td align="right">Dirección IP :</td><td>$(ip)</td></tr>
+	<tr>
+	  <td align="right">Bytes( Subida/Descarga):</td><td>$(bytes-in-nice) / $(bytes-out-nice)</td></tr>
 $(if session-time-left)
-	<tr><td align="right">connected / left:</td><td>$(uptime) / $(session-time-left)</td></tr>
+	<tr>
+	  <td align="right"> Restante:</td><td> $(session-time-left)</td></tr>
 $(else)
-	<tr><td align="right">connected:</td><td>$(uptime)</td></tr>
+	<tr>
+	  <td align="right">Conexión:</td><td>$(uptime)</td></tr>
 $(endif)
 $(if blocked == 'yes')
-	<tr><td align="right">status:</td><td><div style="color: #FF8080">
+	<tr>
+	  <td align="right">Estatus:</td><td><div style="color: #FF8080">
 <a href="$(link-advert)" target="hotspot_advert">advertisement</a> required</div></td>
 $(elif refresh-timeout)
-	<tr><td align="right">status refresh:</td><td>$(refresh-timeout)</td>
+	<tr>
+	  <td align="right">Status refresh:</td><td>$(refresh-timeout)</td>
 $(endif)
 
 </table>
-$(if login-by-mac != 'yes')
+
+
+
+<br/><a   href="https://google.com.mx"><input  id="botonfree" type="button" value="SEGUIR CONECTADO" /></a>
+<br/><a   href="logout?erase-cookie=true"><input  id="botonfree" type="button" value="SALIR" /></a>
+
+<p>$(if error)<br>
+  <br><br>
+<div class="error"> <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+<strong><br>$(error)</strong></div>
+$(endif)</p>
 <br>
-<!-- user manager link. if user manager resides on other router, replace $(hostname) by its address
-<button onclick="document.location='http://$(hostname)/user?subs='; return false;">status</button>
-<!-- end of user manager link -->
-<input id="boton" type="submit" value="Desconectar" title="log off">
-$(endif)
-        </form></div>
+<br/>
 
-</td>
-</table>
+<p>
+</p>
+</center>
+</div></div></div></div>
+
+
+<script type="text/javascript">
+<!--
+  document.login.username.focus();
+//-->
+</script>
+<script type="text/javascript">
+document.oncontextmenu = function(){return false;}
+</script>
+<script language="javascript">
+function rlogin()
+{
+document.getElementById("Nombre2").value = document.getElementById("Nombre1").value;
+}
+  </script>
 </body>
 </html>

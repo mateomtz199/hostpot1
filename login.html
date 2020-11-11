@@ -1,83 +1,163 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-<meta charset="utf-8">
-<title>Login</title>
-<meta http-equiv="pragma" content="no-cache" />
-<meta http-equiv="expires" content="-1" />	
-<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0" />
-<link rel="stylesheet" href="login.css" media="screen">
- 
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
+  <title>$(identity)-Login</title>
+
+
+  <link rel="stylesheet" href="css/login.css">
+
 
 </head>
-<body class='login'>
-$(if chap-id)
-	<form name="sendin" action="$(link-login-only)" method="post">
-		<input type="hidden" name="username" />
-		<input type="hidden" name="password" />
-		<input type="hidden" name="dst" value="$(link-orig)" />
-		<input type="hidden" name="popup" value="true" />
-	</form>
-	
-	<script type="text/javascript" src="md5.js"></script>
-	<script type="text/javascript">
-	<!--
-	    function doLogin() {
-		document.sendin.username.value = document.login.username.value;
-		document.sendin.password.value = hexMD5('$(chap-id)' + document.login.password.value + '$(chap-challenge)');
-		document.sendin.submit();
-		return false;
-	    }
+
+<body>
+  $(if chap-id)
+  <form name="sendin" action="$(link-login-only)" method="post">
+    <input type="hidden" name="username" />
+    <input type="hidden" name="password" />
+    <input type="hidden" name="dst" value="$(link-orig)" />
+    <input type="hidden" name="popup" value="true" />
+  </form>
+
+  <script type="text/javascript" src="md5.js"></script>
+  <script type="text/javascript">
+	< !--
+      function doLogin() {
+        document.sendin.username.value = document.login.username.value;
+        document.sendin.password.value = hexMD5('$(chap-id)' + document.login.password.value + '$(chap-challenge)');
+        document.sendin.submit();
+        return false;
+      }
 	//-->
-	</script>
-$(endif)
+  </script>
 
 
-<form class="vertical-form" name="login" action="$(link-login-only)" method="post" background="#A03472"
-	$(if chap-id) onSubmit="return doLogin()" $(endif)>
-<input type="hidden" name="dst" value="$(link-orig)" />
-<input type="hidden" name="popup" value="true" />
-<div style="margin:0;padding:50;display:inline"></div>
 
-<center>
-    <div id="head">
+  <div>
+    <h3>
+      <legend>
+        $(identity)
+      </legend>
+    </h3>
+    <div class="box">
+
+      <!-- Piiiiiiiiiiiiiiiiiiiiin -->
+      <center><img src="imagenes/logo-min.png" alt=""></center>
+      <br>
+      <div class="login-html">
+        <!-- Elegir -->
+        <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Usuario</label>
+        <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">PIN</label>
+
+        <!-- estilos -->
+        <div class="login-form">
+          <form name="login" action="$(link-login-only)" method="post" $(if chap-id) onSubmit="return doLogin()"
+            $(endif)>
+            <input type="hidden" name="dst" value="$(link-orig)" />
+            <input type="hidden" name="popup" value="true" />
+
+
+            <div class="sign-in-htm">
+
+              <div class="group">
+                <label for="user" class="label">Usuario</label>
+                <input name="username" type="text" value="$(username)" placeholder="User" class="input" />
+              </div>
+
+              <div class="group">
+                <label for="user" class="label">Contraseña</label>
+                <input autocomplete="off" name="password" type="password" label="false" placeholder="Password"
+                  class="input" />
+              </div>
+              <div class="group">
+                <input name="submit" type="submit" value="Entrar" class="button" class="button" />
+              </div>
+              <p>$(if error)<br>
+
+              <div class="error"> <span class="closebtn"
+                  onclick="this.parentElement.style.display='none';">&times;</span>
+                <strong><br>$(error)</strong></div>
+              $(endif)</p>
+            </div>
+          </form>
+
+
+
+          <!-- assssssssssssssss -->
+          <div class="sign-up-htm">
+
+            <div class="form-vertical">
+              <form name="login" action="$(link-login-only)" method="post" $(if chap-id) onSubmit="return doLogin()"
+                $(endif)>
+                <input type="hidden" name="dst" value="$(link-orig)" />
+                <input type="hidden" name="popup" value="true" />
+                <div>
+
+                  <div class="group">
+                    <input autocomplete="off" name="username" type="password" value="$(username)" required
+                      oninvalid="setCustomValidity('Por favor ingrese contraseña')" oninput="setCustomValidity('')"
+                      onkeyup="rlogin()" class="input" placeholder="PIN" />
+                  </div>
+
+                  <input autocomplete="off" name="password" type="hidden" label="false"
+                    size="0" />
+
+                    <div class="group">
+                  <input id="boton" name="submit" type="submit" value="Entrar" class="button" />
+                  <br>
+                  </div>
+
+                </div>
+                <p>$(if error)<br>
+                  <br>
+                <div class="error"> <span class="closebtn"
+                    onclick="this.parentElement.style.display='none';">&times;</span>
+                  <strong><br>$(error)</strong></div>
+                $(endif)
+
+              </form>
+
+            </div>
+
+          </div><!-- html.div -->
+          
+        </div>
+        <p>$(if trial == 'yes')La opción gratis está limitada.<br> <a
+          href="$(link-login-only)?dst=$(link-orig-esc)&amp;username=T-$(mac-esc)">
+          <input
+            id="botonfree" name="submit" type="button" value="Probar Gratis "
+            title="Presione para validar" /></a>.$(endif)</p>
+        
+
+      </div>
     </div>
-    
-    
-<div id="box">
-    <div id="userdiv"> </div>
-    <legend>
-    <p>Login </p>
-    </legend>
-<div><input id="user" autocomplete="on" name="username" type="text" value="$(username)" placeholder="Usuario"/></div>
-<div id="passDiv"><input id="pass" autocomplete="off" name="password" type="password" label="false" placeholder="Password"/></div>
-<div><input id="boton" name="submit" type="submit" value=" " /></div>
-</div>
-</center>
-
- <div class='pre-footer'>
-                        <p> </p><span></span>
-                    </div>
 
 
-<div class='footer'>
-<p>$(if trial == 'yes') 
-    <a id="freebot" class="button" href="$(link-login-only)?dst=$(link-orig-esc)&amp;username=T-$(mac-esc)">&nbsp;</a>$(endif)
-</p>
-<p>$(if error)<span style="color: red; font-size: 16px">$(error)</span>$(endif)</p>
-<br>
-<p>
-</p>
-</div>
-</form>
 
-<script type="text/javascript">
-<!--
-  document.login.username.focus();
+  </div> <!-- End Row -->
+
+
+  <script src="js/index.js"></script>
+  </div>
+
+  <script type="text/javascript">
+      < !--
+      document.login.username.focus();
 //-->
-</script>
-<script type="text/javascript">
-document.oncontextmenu = function(){return false;}
-</script>
+  </script>
+  <script type="text/javascript">
+    document.oncontextmenu = function () { return false; }
+  </script>
+  <script language="javascript">
+    function rlogin() {
+      document.getElementById("Nombre2").value = document.getElementById("Nombre1").value;
+    }
+  </script>
+
+
+
 </body>
+
 </html>

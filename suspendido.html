@@ -2,8 +2,8 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Alogin</title>
-<meta http-equiv="refresh" content="3; url=https://www.google.com.mx/">
+<title>suspendido</title>
+<meta http-equiv="refresh" content="2; url=$(link-orig)">
 <meta http-equiv="pragma" content="no-cache" />
 <meta http-equiv="expires" content="-1" />	
 <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0" />
@@ -38,19 +38,23 @@ $(endif)
 
 <center>
   <div id="head">
-    <img id="logo" src="imagenes/conected.png"/> </div>
+    <img id="logo" src="imagenes/desconected.png"/> </div>
     <div align="center">
       <h2 class="textShadowHex">
         <legend class="parpadea text">
-        Acceso autorizado@
+        Desconectad@
         </legend>
       </h2>
     </div>
   <div id="box">
   <center>
+<br>
+<legend class="textaviso">
+        Se ha suspendido el acceso a la red, ya que no ha cubierto su cuota correspondiente  para tener activo su acceso, si esto es un error reportese, más información al WhatsApp: 9513107437
+    </legend>
 
-							Limitación:$(remain-bytes-total-nice)<br> $(if login-by == 'trial')<hr>Por su preferencia **gracias**<br>Ingresando gratis...Esta opción está limitada lo identificamos por su MAC:<br> $(mac)$(endif)<br>$(if session-time-left)<hr> 
-							<h1>Vigencia: <strong>$(session-time-left) $(endif)</strong><a   href="https://www.google.com.mx"><input  id="botonfree" type="button" value="Continuar" /></a>
+<hr>
+<br/><a   href="logout?erase-cookie=true"><input  id="botonfree" type="button" value="Iniciar sesión" /></a>
 <p>$(if error)<br>
   <br><br>
 <div class="error"> <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
@@ -61,7 +65,7 @@ $(endif)</p>
 
 <p>
 </p>
-
+</center>
 </div></div></div></div>
 
 
@@ -73,6 +77,11 @@ $(endif)</p>
 <script type="text/javascript">
 document.oncontextmenu = function(){return false;}
 </script>
-<script language="JavaScript">function startClock() {$(if popup == 'true')open('$(link-status)', 'hotspot_status', 'toolbar=0,location=0,directories=0,status=0,menubars=0,resizable=1,width=290');$(endif)location.href = 'https://www.google.com.mx/',500;}</script>
+<script language="javascript">
+function rlogin()
+{
+document.getElementById("Nombre2").value = document.getElementById("Nombre1").value;
+}
+  </script>
 </body>
 </html>
