@@ -90,12 +90,17 @@ a {
   padding: 1rem 1rem;
   border-radius: 1rem;
 }
+.tab :hover{
+  background: rgb(255,188,0);
+  background: linear-gradient(138deg, rgba(255,188,0,1) 0%, rgba(255,149,0,1) 100%);
+}
 .login-html .sign-in:checked + .tab,
 .login-html .sign-up:checked + .tab {
   color: #fff;
   border:rgb(255, 230, 3) solid 1px;
-  background: rgb(245,255,0);
-  background: linear-gradient(138deg, rgba(245,255,0,1) 0%, rgba(255,192,0,1) 100%);
+  
+  background: rgb(255,188,0);
+  background: linear-gradient(138deg, rgba(255,188,0,1) 0%, rgba(255,149,0,1) 100%);
 }
 .login-form {
   min-height: 300px;
@@ -199,7 +204,7 @@ a {
   width: 100%;
   height: auto;
   min-height: 50px;
-  position: fixed;
+  position: top;
   left: 0px;
   right: 0px;
   top: 0px;
@@ -226,27 +231,10 @@ a {
   transition: 0.3s;
 }
 
-.link {
-  -webkit-appearance: none;
-  color: #fff;
-  background: #25d366;
-  opacity: 1;
-  border: none;
-  border-radius: 3px;
-  height: 52px;
-  width: 100%;
-  max-width: 650px;
-  min-width: 70px;
-  font-size: 16px;
-  font-weight: 400;
-  outline: 0;
-  text-transform: uppercase;
-  width: 100%;
-  padding: 10px;
-  height: 50px;
-  font-size: 18px;
-  color: #fff;
-}
 .textaviso {
   color: #f00;
+}
+
+.imagen{
+  padding-top: 1rem;
 }

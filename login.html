@@ -36,15 +36,10 @@
 
 
   <div>
-    <h3>
-      <legend>
-        $(identity)
-      </legend>
-    </h3>
     <div class="box">
 
       <!-- Piiiiiiiiiiiiiiiiiiiiin -->
-      <center><img src="imagenes/logo-min.png" alt=""></center>
+      <center><img src="imagenes/logo-min.png" alt="" class="imagen"></center>
       <br>
       <div class="login-html">
         <!-- Elegir -->
@@ -63,12 +58,12 @@
 
               <div class="group">
                 <label for="user" class="label">Usuario</label>
-                <input name="username" type="text" value="$(username)" placeholder="User" class="input" />
+                <input name="username" type="text" value="$(username)" placeholder="Usuario" class="input" />
               </div>
 
               <div class="group">
                 <label for="user" class="label">Contraseña</label>
-                <input autocomplete="off" name="password" type="password" label="false" placeholder="Password"
+                <input autocomplete="off" name="password" type="password" label="false" placeholder="Contraseña"
                   class="input" />
               </div>
               <div class="group">
@@ -124,11 +119,9 @@
           </div><!-- html.div -->
           
         </div>
-        <p>$(if trial == 'yes')La opción gratis está limitada.<br> <a
+        <p>$(if trial == 'yes')La opción gratis está limitada. <a
           href="$(link-login-only)?dst=$(link-orig-esc)&amp;username=T-$(mac-esc)">
-          <input
-            id="botonfree" name="submit" type="button" value="Probar Gratis "
-            title="Presione para validar" /></a>.$(endif)</p>
+          <strong>Probar gratis</strong></a>.$(endif)</p>
         
 
       </div>
